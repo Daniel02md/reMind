@@ -60,6 +60,7 @@ extension Box{
     override public func awakeFromInsert() {
         super.awakeFromInsert()
         self.createdAt = Date()
+        self.identifier = UUID()
     }
 }
 
