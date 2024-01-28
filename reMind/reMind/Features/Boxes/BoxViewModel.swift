@@ -14,6 +14,14 @@ class BoxViewModel: ObservableObject {
         self.boxes = Box.all()
     }
 
+    func newBox(name: String, keyword: String, description: String, theme: Int){
+        let box: Box = Box.newObject()
+        box.name = name
+        box.rawTheme = Int16(theme)
+        self.boxes.append(box)
+        CoreDataStack.shared.saveContext()
+    }
+    
     func getNumberOfPendingTerms(of box: Box) -> String {
         let term = box.terms as? Set<Term> ?? []
         let today = Date()

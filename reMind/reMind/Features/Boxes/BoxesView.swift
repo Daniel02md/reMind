@@ -45,10 +45,7 @@ struct BoxesView: View {
             }
         }
         .sheet(isPresented: $isCreatingNewBox) {
-            BoxEditorView(name: "",
-                          keywords: "",
-                          description: "",
-                          theme: 0)
+            BoxEditorView(viewModel: viewModel)
         }
     }
 }

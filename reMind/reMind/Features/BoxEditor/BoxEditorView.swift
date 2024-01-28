@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct BoxEditorView: View {
-    @State var name: String
-    @State var keywords: String
-    @State var description: String
-    @State var theme: Int
-
+    @Environment (\.dismiss) var dismiss
+    @ObservedObject var viewModel: BoxViewModel
+    
+    @State private var name: String = ""
+    @State private var keywords: String = ""
+    @State private var description: String = ""
+    @State private var theme: Int = 1
+    
+    init(viewModel: BoxViewModel = BoxViewModel()) {
+            self.viewModel = viewModel
+        }
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -35,13 +42,14 @@ struct BoxEditorView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
-                        print("Cancel")
+                        dismiss()
                     }
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        print("Cancel")
+                        viewModel.newBox(name: name, keyword: keywords, description: description, theme: theme)
+                        dismiss()
                     }
                     .fontWeight(.bold)
                 }
@@ -52,9 +60,6 @@ struct BoxEditorView: View {
 
 struct BoxEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        BoxEditorView(name: "",
-                      keywords: "",
-                      description: "",
-                      theme: 0)
+        BoxEditorView()
     }
 }
