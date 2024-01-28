@@ -22,6 +22,7 @@ extension Box {
     @NSManaged public var identifier: UUID?
     @NSManaged public var name: String?
     @NSManaged public var rawTheme: Int16
+    @NSManaged public var createdAt: Date
     @NSManaged public var terms: NSSet?
 
 }
@@ -53,6 +54,13 @@ extension Box: CoreDataModel {
     }
 
     var numberOfTerms: Int { self.terms?.count ?? 0 }
+}
+
+extension Box{
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        self.createdAt = Date()
+    }
 }
 
 enum reTheme: Int {
