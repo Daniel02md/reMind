@@ -65,9 +65,9 @@ extension Box{
 }
 
 enum reTheme: Int {
-    case aquamarine = 0
-    case mauve
+    case mauve = 0
     case lavender
+    case aquamarine
 
     var name: String {
         switch self {
