@@ -16,7 +16,7 @@ struct BoxEditorView: View {
     @State private var description: String = ""
     @State private var theme: Int = 0
     
-    init(viewModel: BoxViewModel = BoxViewModel()) {
+    init(viewModel: BoxViewModel) {
             self.viewModel = viewModel
         }
     
@@ -29,7 +29,8 @@ struct BoxEditorView: View {
                             text: $keywords)
                 
                 reTextEditor(title: "Description",
-                             text: $description)
+                             text: $description,
+                             maxSize: 150)
 
                 reThemePickerView(selectedTheme: $theme)
                 Spacer()
@@ -59,6 +60,6 @@ struct BoxEditorView: View {
 
 struct BoxEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        BoxEditorView()
+        BoxEditorView(viewModel: BoxViewModel())
     }
 }

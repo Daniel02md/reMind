@@ -30,7 +30,7 @@ struct reTextEditor: View {
                 Divider()
                     .background(Palette.label.render.opacity(0.6))
 
-                Text("\(maxSize)")
+                Text("\(maxSize - text.count)")
                     .font(.callout)
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .trailing)
