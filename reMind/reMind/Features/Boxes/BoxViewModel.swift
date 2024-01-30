@@ -19,7 +19,6 @@ class BoxViewModel: ObservableObject {
         box.name = name
         box.rawTheme = Int16(theme)
         self.boxes.append(box)
-        CoreDataStack.shared.saveContext()
     }
     
     func getNumberOfPendingTerms(of box: Box) -> String {
