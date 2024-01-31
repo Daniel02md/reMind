@@ -10,13 +10,12 @@ import SwiftUI
 struct BoxView: View {
     var box: Box
 
+    @ObservedObject var viewModel: TermViewModel
     @State private var searchText: String = ""
-
+    @State private var isCreatingTerm: Bool = false
+    @State private var isEditingTerm: Bool = false
     private var filteredTerms: [Term] {
-        let termsSet = box.terms as? Set<Term> ?? []
-        let terms = Array(termsSet).sorted { lhs, rhs in
-            (lhs.value ?? "") < (rhs.value ?? "")
-        }
+        let terms: [Term] = viewModel.terms
         
         if searchText.isEmpty {
             return terms
@@ -25,12 +24,16 @@ struct BoxView: View {
         }
     }
     
+    init (box: Box){
+        self.box = box
+        viewModel = TermViewModel(box: box)
+    }
     var body: some View {
         List {
                 TodaysCardsView(numberOfPendingCards: 0,
                                 theme: .mauve)
             Section {
-                ForEach(filteredTerms, id: \.self) { term in
+                ForEach(filteredTerms) { term in
                     Text(term.value ?? "Unknown")
                         .padding(.vertical, 8)
                         .fontWeight(.bold)
@@ -61,18 +64,24 @@ struct BoxView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    print("edit")
+                    isEditingTerm.toggle()
                 } label: {
                     Image(systemName: "square.and.pencil")
                 }
 
                 Button {
-                    print("add")
+                    isCreatingTerm.toggle()
                 } label: {
                     Image(systemName: "plus")
                 }
 
             }
+        }
+        .sheet(isPresented: $isEditingTerm){
+            TermEditorView(box: box, viewModel: viewModel)
+        }
+        .sheet(isPresented: $isCreatingTerm){
+            TermEditorView(box: box, viewModel: viewModel)
         }
     }
 }

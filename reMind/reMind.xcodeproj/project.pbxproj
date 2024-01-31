@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B81433BD2B69C5D400FCD5D1 /* TermViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81433BC2B69C5D400FCD5D1 /* TermViewModel.swift */; };
 		B87824202B6731720055BD8A /* reRadialButtomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B878241F2B6731720055BD8A /* reRadialButtomView.swift */; };
 		B87824212B6731720055BD8A /* reThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B878241E2B6731720055BD8A /* reThemePickerView.swift */; };
 		FE1640962AC2126E0073317C /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1640922AC2126E0073317C /* Box.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B81433BC2B69C5D400FCD5D1 /* TermViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermViewModel.swift; sourceTree = "<group>"; };
 		B878241E2B6731720055BD8A /* reThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reThemePickerView.swift; sourceTree = "<group>"; };
 		B878241F2B6731720055BD8A /* reRadialButtomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reRadialButtomView.swift; sourceTree = "<group>"; };
 		FE1640922AC2126E0073317C /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = SOURCE_ROOT; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				FE3ABECF2A4F65BC00432ED4 /* TermEditorView.swift */,
+				B81433BC2B69C5D400FCD5D1 /* TermViewModel.swift */,
 			);
 			path = TermEditor;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				FEDE8E092A4DFFE100EEF7EA /* BoxEditorView.swift in Sources */,
 				FE3ABED02A4F65BC00432ED4 /* TermEditorView.swift in Sources */,
 				FE6A9F9C2A461E2400A84FC9 /* BoxesView.swift in Sources */,
+				B81433BD2B69C5D400FCD5D1 /* TermViewModel.swift in Sources */,
 				FE3ABED82A5328FD00432ED4 /* TodaysCardsView.swift in Sources */,
 				FE6F11AF2A605A21003511F3 /* CoreDataModel.swift in Sources */,
 				B87824212B6731720055BD8A /* reThemePickerView.swift in Sources */,

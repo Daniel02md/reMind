@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct TermEditorView: View {
-    @State var term: String
-    @State var meaning: String
+    @Environment (\.dismiss) var dismiss: DismissAction
+    
+    var box: Box
+    @ObservedObject var viewModel: TermViewModel
+    @State var term: String = ""
+    @State var meaning: String = ""
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
                 reTextField(title: "Term", text: $term)
-                reTextEditor(title: "Meaning", text: $meaning)
+                reTextEditor(title: "Meaning", text: $meaning, maxSize: 150)
                 
                 Spacer()
 
@@ -34,13 +38,14 @@ struct TermEditorView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
-                        print("Cancel")
+                        dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        print("Cancel")
+                        viewModel.newTerm(addTo: box, value: term, meaning: meaning)
+                        dismiss()
                     }
                     .fontWeight(.bold)
                 }
@@ -51,6 +56,6 @@ struct TermEditorView: View {
 
 struct TermEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        TermEditorView(term: "", meaning: "")
+        TermEditorView(box: Box.newObject(), viewModel: TermViewModel(box: Box.newObject()))
     }
 }

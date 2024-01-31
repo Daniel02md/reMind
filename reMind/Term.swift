@@ -30,6 +30,10 @@ extension Term {
 
 }
 
+extension Term: Identifiable{
+    
+}
+
 extension Term: CoreDataModel {
     var srs: SpacedRepetitionSystem {
         return SpacedRepetitionSystem(rawValue: Int(rawSRS)) ?? SpacedRepetitionSystem.first
