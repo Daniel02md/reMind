@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct BoxCardView: View {
-    @State private var boxName: String
-    @State private var numberOfTerms: Int
-    @State private var theme: reTheme
+    var boxName: String
+    var numberOfTerms: Int
+    var theme: reTheme
 
     init(boxName: String, numberOfTerms: Int, theme: reTheme) {
         self.boxName = boxName

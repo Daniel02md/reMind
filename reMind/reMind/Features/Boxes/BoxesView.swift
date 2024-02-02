@@ -13,7 +13,7 @@ struct BoxesView: View {
         GridItem(.adaptive(minimum: 140), spacing: 20)
     ]
     
-    @ObservedObject var viewModel: BoxViewModel
+    @StateObject var viewModel: BoxViewModel = BoxViewModel()
     @State private var isCreatingNewBox: Bool = false
     
     var body: some View {
@@ -22,6 +22,7 @@ struct BoxesView: View {
                 ForEach(viewModel.boxes) { box in
                     NavigationLink {
                         BoxView(box: box)
+                            .environmentObject(viewModel)
                     } label: {
                         BoxCardView(boxName: box.name ?? "Unkown",
                                     numberOfTerms: box.numberOfTerms,
@@ -45,7 +46,8 @@ struct BoxesView: View {
             }
         }
         .sheet(isPresented: $isCreatingNewBox) {
-            BoxEditorView(viewModel: viewModel)
+            BoxEditorView()
+                .environmentObject(viewModel)
         }
     }
 }
@@ -53,9 +55,11 @@ struct BoxesView: View {
 struct BoxesView_Previews: PreviewProvider {
 
     static let viewModel: BoxViewModel = {
+        let viewModel = BoxViewModel()
         let box1 = Box(context: CoreDataStack.inMemory.managedContext)
         box1.name = "Box 1"
         box1.rawTheme = 0
+        viewModel.boxes.append(box1)
 
         let term = Term(context: CoreDataStack.inMemory.managedContext)
         term.lastReview = Calendar.current.date(byAdding: .day,
@@ -66,12 +70,14 @@ struct BoxesView_Previews: PreviewProvider {
         let box2 = Box(context: CoreDataStack.inMemory.managedContext)
         box2.name = "Box 2"
         box2.rawTheme = 1
-
+        viewModel.boxes.append(box2)
+        
         let box3 = Box(context: CoreDataStack.inMemory.managedContext)
         box3.name = "Box 3"
         box3.rawTheme = 2
-
-        return BoxViewModel()
+        viewModel.boxes.append(box3)
+        
+        return viewModel
     }()
     
     static var previews: some View {

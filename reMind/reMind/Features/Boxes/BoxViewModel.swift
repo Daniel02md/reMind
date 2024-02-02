@@ -21,6 +21,12 @@ class BoxViewModel: ObservableObject {
         self.boxes.append(box)
     }
     
+    func updateBox(box: Box, name: String? = nil, keyword: String? = nil, description: String? = nil, theme: Int? = nil){
+        box.name = name ?? box.name
+        box.rawTheme = Int16(theme ?? Int(box.rawTheme))
+        objectWillChange.send()
+    }
+    
     func getNumberOfPendingTerms(of box: Box) -> String {
         let term = box.terms as? Set<Term> ?? []
         let today = Date()

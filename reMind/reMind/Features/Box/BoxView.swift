@@ -78,7 +78,7 @@ struct BoxView: View {
             }
         }
         .sheet(isPresented: $isEditingTerm){
-            TermEditorView(box: box, viewModel: viewModel)
+            BoxEditorView(box: box)
         }
         .sheet(isPresented: $isCreatingTerm){
             TermEditorView(box: box, viewModel: viewModel)

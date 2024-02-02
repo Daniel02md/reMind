@@ -14,11 +14,14 @@ struct reMindApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                BoxesView(viewModel: BoxViewModel())
+                BoxesView()
             }
         }
         .onChange(of: scenePhase){ phase in
-            if phase == .background{
+            switch(phase){
+            case .active:
+                {}()
+            default:
                 CoreDataStack.shared.saveContext()
             }
         }

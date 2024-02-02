@@ -9,16 +9,13 @@ import SwiftUI
 
 struct BoxEditorView: View {
     @Environment (\.dismiss) var dismiss
-    @ObservedObject var viewModel: BoxViewModel
+    @EnvironmentObject var viewModel: BoxViewModel
     
+    var box: Box?
     @State private var name: String = ""
     @State private var keywords: String = ""
     @State private var description: String = ""
     @State private var theme: Int = 0
-    
-    init(viewModel: BoxViewModel) {
-            self.viewModel = viewModel
-        }
     
     var body: some View {
         NavigationStack {
@@ -37,7 +34,7 @@ struct BoxEditorView: View {
             }
             .padding()
             .background(reBackground())
-            .navigationTitle("New Box")
+            .navigationTitle("\(box == nil ? "New" : "Edit") Box")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -48,10 +45,22 @@ struct BoxEditorView: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        viewModel.newBox(name: name, keyword: keywords, description: description, theme: theme)
+                        if let fulfilledBox = box {
+                            viewModel.updateBox(box: fulfilledBox, name: name, theme: theme)
+                            
+                            
+                        } else{
+                            viewModel.newBox(name: name, keyword: keywords, description: description, theme: theme)
+                        }
                         dismiss()
                     }
                     .fontWeight(.bold)
+                }
+            }
+            .onAppear{
+                if let editedBox = box{
+                    self.name = editedBox.name ?? ""
+                    self.theme = Int(editedBox.rawTheme)
                 }
             }
         }
@@ -60,6 +69,6 @@ struct BoxEditorView: View {
 
 struct BoxEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        BoxEditorView(viewModel: BoxViewModel())
+        BoxEditorView()
     }
 }
