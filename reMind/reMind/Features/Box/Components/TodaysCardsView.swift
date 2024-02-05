@@ -10,25 +10,34 @@ import SwiftUI
 struct TodaysCardsView: View {
     @State var numberOfPendingCards: Int
     @State var theme: reTheme
+    @State private var isSwipping: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Today's Cards")
-                .font(.title)
-                .fontWeight(.semibold)
-            Text("\(numberOfPendingCards) cards to review")
-                .font(.title3)
-
-            Button(action: {
-                print("swippe time!")
-            }, label: {
-                Text("Start Swipping")
-                    .frame(maxWidth: .infinity)
-            })
-            .buttonStyle(reColorButtonStyle(.mauve))
-            .padding(.top, 10)
+        NavigationStack{
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Today's Cards")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                Text("\(numberOfPendingCards) cards to review")
+                    .font(.title3)
+                
+                Button(action: {
+                    isSwipping = true
+                }, label: {
+                    Text("Start Swipping")
+                        .frame(maxWidth: .infinity)
+                })
+                .buttonStyle(reColorButtonStyle(.mauve))
+                .padding(.top, 10)
+                .navigationDestination(isPresented: $isSwipping){
+                    SwipperView(review: SwipeReview(termsToReview: [
+                        Term(context: CoreDataStack.inMemory.managedContext)
+                    ]))
+                    .navigationBarBackButtonHidden(true)
+                }
+            }
+            .padding(.vertical, 16)
         }
-        .padding(.vertical, 16)
     }
 }
 
