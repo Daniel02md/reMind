@@ -100,12 +100,15 @@ struct BoxView_Previews: PreviewProvider {
     static let terms: [Term] = {
         let term1 = Term(context: CoreDataStack.inMemory.managedContext)
         term1.value = "Term 1"
+        term1.meaning = "Meaning 1"
 
         let term2 = Term(context: CoreDataStack.inMemory.managedContext)
         term2.value = "Term 2"
+        term2.meaning = "Meaning 2"
 
         let term3 = Term(context: CoreDataStack.inMemory.managedContext)
         term3.value = "Term 3"
+        term3.meaning = "Meaning 3"
 
         return [term1, term2, term3]
     }()

@@ -10,6 +10,7 @@
 		B81433BD2B69C5D400FCD5D1 /* TermViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81433BC2B69C5D400FCD5D1 /* TermViewModel.swift */; };
 		B87824202B6731720055BD8A /* reRadialButtomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B878241F2B6731720055BD8A /* reRadialButtomView.swift */; };
 		B87824212B6731720055BD8A /* reThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B878241E2B6731720055BD8A /* reThemePickerView.swift */; };
+		B8C8F2F92B70655700011978 /* TermRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C8F2F82B70655700011978 /* TermRowView.swift */; };
 		FE1640962AC2126E0073317C /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1640922AC2126E0073317C /* Box.swift */; };
 		FE1640992AC2126E0073317C /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1640952AC2126E0073317C /* Term.swift */; };
 		FE3ABED02A4F65BC00432ED4 /* TermEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3ABECF2A4F65BC00432ED4 /* TermEditorView.swift */; };
@@ -46,6 +47,7 @@
 		B81433BC2B69C5D400FCD5D1 /* TermViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermViewModel.swift; sourceTree = "<group>"; };
 		B878241E2B6731720055BD8A /* reThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reThemePickerView.swift; sourceTree = "<group>"; };
 		B878241F2B6731720055BD8A /* reRadialButtomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reRadialButtomView.swift; sourceTree = "<group>"; };
+		B8C8F2F82B70655700011978 /* TermRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermRowView.swift; sourceTree = "<group>"; };
 		FE1640922AC2126E0073317C /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = SOURCE_ROOT; };
 		FE1640952AC2126E0073317C /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = SOURCE_ROOT; };
 		FE3ABECF2A4F65BC00432ED4 /* TermEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEditorView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				FE3ABED72A5328FD00432ED4 /* TodaysCardsView.swift */,
+				B8C8F2F82B70655700011978 /* TermRowView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				B87824212B6731720055BD8A /* reThemePickerView.swift in Sources */,
 				FEDE8E072A4DFEBD00EEF7EA /* reTexFieldStyle.swift in Sources */,
 				FE3ABEDF2A53522A00432ED4 /* SwipperView.swift in Sources */,
+				B8C8F2F92B70655700011978 /* TermRowView.swift in Sources */,
 				FE6F11B12A605A4C003511F3 /* NSObject.swift in Sources */,
 				FE6F11AD2A6059FD003511F3 /* CoreDataStack.swift in Sources */,
 				FE6F11B32A605A69003511F3 /* ActiveRecord.swift in Sources */,
