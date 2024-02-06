@@ -22,6 +22,7 @@ struct BoxesView: View {
                 ForEach(viewModel.boxes) { box in
                     NavigationLink {
                         BoxView(box: box)
+                            .environmentObject(viewModel)
                     } label: {
                         BoxCardView(boxName: box.name ?? "Unkown",
                                     numberOfTerms: box.numberOfTerms,
