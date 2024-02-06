@@ -31,7 +31,7 @@ struct TodaysCardsView: View {
                 .padding(.top, 10)
                 .navigationDestination(isPresented: $isSwipping){
                     SwipperView(review: SwipeReview(termsToReview: [
-                        Term(context: CoreDataStack.inMemory.managedContext)
+                        Term.newObject()
                     ]))
                     .navigationBarBackButtonHidden(true)
                 }

@@ -34,17 +34,7 @@ struct BoxView: View {
                                 theme: .mauve)
             Section {
                 ForEach(filteredTerms) { term in
-                    Text(term.value ?? "Unknown")
-                        .padding(.vertical, 8)
-                        .fontWeight(.bold)
-                        .swipeActions(edge: .trailing) {
-                            Button(role: .destructive) {
-                                print("delete")
-                            } label: {
-                                Image(systemName: "trash")
-                            }
-
-                        }
+                    TermRowView(viewModel: viewModel, term: term)
                 }
             } header: {
                 Text("All Cards")
@@ -81,7 +71,7 @@ struct BoxView: View {
             BoxEditorView(box: box)
         }
         .sheet(isPresented: $isCreatingTerm){
-            TermEditorView(box: box, viewModel: viewModel)
+            TermEditorView(viewModel: viewModel)
         }
     }
 }
