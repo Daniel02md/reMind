@@ -9,13 +9,18 @@ import Foundation
 
 class BoxViewModel: ObservableObject {
     @Published var boxes: [Box] = []
+    @Published private var boxWillChange: Void = ()
 
     init() {
         self.boxes = Box.all()
+        self.boxes.forEach{
+            $0.objectWillChange.assign(to: &$boxWillChange)
+        }
     }
 
     func newBox(name: String, keyword: String, description: String, theme: Int){
         let box: Box = Box.newObject()
+        box.objectWillChange.assign(to: &$boxWillChange)
         box.name = name
         box.rawTheme = Int16(theme)
         self.boxes.append(box)
@@ -24,7 +29,6 @@ class BoxViewModel: ObservableObject {
     func updateBox(box: Box, name: String? = nil, keyword: String? = nil, description: String? = nil, theme: Int? = nil){
         box.name = name ?? box.name
         box.rawTheme = Int16(theme ?? Int(box.rawTheme))
-        objectWillChange.send()
     }
     
     func getNumberOfPendingTerms(of box: Box) -> String {
