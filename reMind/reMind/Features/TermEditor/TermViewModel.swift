@@ -31,6 +31,14 @@ class TermViewModel: ObservableObject{
         term.meaning = meaning ?? term.meaning
         objectWillChange.send()
     }
+    
+    func deleteTerm(term: Term){
+        box.removeFromTerms(term)
+        if let index = terms.firstIndex(of: term){
+            terms.remove(at: index)
+            CoreDataStack.shared.saveContext()
+        }
+    }
 }
 
 

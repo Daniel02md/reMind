@@ -21,7 +21,7 @@ struct TermRowView: View {
                 .fontWeight(.bold)
                 .swipeActions(edge: .trailing) {
                     Button(role: .destructive) {
-                        print("delete")
+                        viewModel.deleteTerm(term: term)
                     } label: {
                         Image(systemName: "trash")
                     }
