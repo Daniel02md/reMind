@@ -10,7 +10,7 @@ import SwiftUI
 struct reBadgeModifier: ViewModifier {
     @Environment(\.colorScheme) var colorScheme
 
-    @State var value: String
+    var value: String
 
     private var textColor: Color {
         colorScheme == .light ? Palette.reWhite.render : Palette.reBlack.render
