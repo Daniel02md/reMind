@@ -29,49 +29,51 @@ struct BoxView: View {
         viewModel = TermViewModel(box: box)
     }
     var body: some View {
-        List {
+        NavigationStack{
+            List {
                 TodaysCardsView(numberOfPendingCards: 0,
                                 theme: .mauve)
-            Section {
-                ForEach(filteredTerms) { term in
-                    TermRowView(viewModel: viewModel, term: term)
+                Section {
+                    ForEach(filteredTerms) { term in
+                        TermRowView(viewModel: viewModel, term: term)
+                    }
+                } header: {
+                    Text("All Cards")
+                        .textCase(.none)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundColor(Palette.label.render)
+                        .padding(.leading, -16)
+                        .padding(.bottom, 16)
                 }
-            } header: {
-                Text("All Cards")
-                    .textCase(.none)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .foregroundColor(Palette.label.render)
-                    .padding(.leading, -16)
-                    .padding(.bottom, 16)
+                
             }
-
-        }
-        .scrollContentBackground(.hidden)
-        .background(reBackground())
-        .navigationTitle(box.name ?? "Unknown")
-        .searchable(text: $searchText, prompt: "")
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button {
-                    isEditingTerm.toggle()
-                } label: {
-                    Image(systemName: "square.and.pencil")
+            .scrollContentBackground(.hidden)
+            .background(reBackground())
+            .navigationTitle(box.name ?? "Unknown")
+            .searchable(text: $searchText, prompt: "")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        isEditingTerm.toggle()
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                    }
+                    
+                    Button {
+                        isCreatingTerm.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                    
                 }
-
-                Button {
-                    isCreatingTerm.toggle()
-                } label: {
-                    Image(systemName: "plus")
-                }
-
             }
-        }
-        .sheet(isPresented: $isEditingTerm){
-            BoxEditorView(box: box)
-        }
-        .sheet(isPresented: $isCreatingTerm){
-            TermEditorView(viewModel: viewModel)
+            .sheet(isPresented: $isEditingTerm){
+                BoxEditorView(box: box)
+            }
+            .sheet(isPresented: $isCreatingTerm){
+                TermEditorView(viewModel: viewModel)
+            }
         }
     }
 }

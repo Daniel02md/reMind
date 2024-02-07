@@ -13,31 +13,29 @@ struct TodaysCardsView: View {
     @State private var isSwipping: Bool = false
     
     var body: some View {
-        NavigationStack{
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Today's Cards")
-                    .font(.title)
-                    .fontWeight(.semibold)
-                Text("\(numberOfPendingCards) cards to review")
-                    .font(.title3)
-                
-                Button(action: {
-                    isSwipping = true
-                }, label: {
-                    Text("Start Swipping")
-                        .frame(maxWidth: .infinity)
-                })
-                .buttonStyle(reColorButtonStyle(.mauve))
-                .padding(.top, 10)
-                .navigationDestination(isPresented: $isSwipping){
-                    SwipperView(review: SwipeReview(termsToReview: [
-                        Term.newObject()
-                    ]))
-                    .navigationBarBackButtonHidden(true)
-                }
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Today's Cards")
+                .font(.title)
+                .fontWeight(.semibold)
+            Text("\(numberOfPendingCards) cards to review")
+                .font(.title3)
+            
+            Button(action: {
+                isSwipping = true
+            }, label: {
+                Text("Start Swipping")
+                    .frame(maxWidth: .infinity)
+            })
+            .buttonStyle(reColorButtonStyle(.mauve))
+            .padding(.top, 10)
+            .navigationDestination(isPresented: $isSwipping){
+                SwipperView(review: SwipeReview(termsToReview: [
+                    Term.newObject()
+                ]))
+                .navigationBarBackButtonHidden(true)
             }
-            .padding(.vertical, 16)
         }
+        .padding(.vertical, 16)
     }
 }
 
