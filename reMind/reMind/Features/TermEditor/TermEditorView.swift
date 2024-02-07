@@ -24,7 +24,9 @@ struct TermEditorView: View {
                 Spacer()
                 if term == nil {
                     Button(action: {
-                        print("save and add new")
+                        viewModel.newTerm(value: value, meaning: meaning)
+                        value = ""
+                        meaning = ""
                     }, label: {
                         Text("Save and Add New")
                             .frame(maxWidth: .infinity)
