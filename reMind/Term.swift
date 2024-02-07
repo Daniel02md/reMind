@@ -44,6 +44,17 @@ extension Term: CoreDataModel {
     }
 }
 
+extension Term{
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        let date = Date()
+        self.creationDate = date
+        self.lastReview = date
+        self.rawSRS = Int16(SpacedRepetitionSystem.none.rawValue)
+        self.identifier = UUID()
+    }
+}
+
 enum SpacedRepetitionSystem: Int {
     case none = 0
     case first = 1
