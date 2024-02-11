@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SwipperView: View {
+    @EnvironmentObject var router: reAppRouter
     @State var review: SwipeReview
     @State private var direction: SwipperDirection = .none
 
@@ -28,7 +29,7 @@ struct SwipperView: View {
             Spacer()
 
             Button(action: {
-                print("finish review")
+                router.navigate(to: .SwipperReport(review))
             }, label: {
                 Text("Finish Review")
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -58,7 +59,7 @@ struct SwipperView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             SwipperView(review: SwipeReview(termsToReview: [
-                Term(context: CoreDataStack.inMemory.managedContext)
+                SwipperView_Previews.term
             ]))
         }
     }

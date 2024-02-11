@@ -17,7 +17,7 @@ final class reAppRouter: Router{
     }
     
     func navigate(to destination: reAppDestination) {
-        
+        navigationPath.append(destination)
     }
     
     func navigateBackward() {

@@ -12,7 +12,7 @@ struct BoxesView: View {
         GridItem(.adaptive(minimum: 140), spacing: 20),
         GridItem(.adaptive(minimum: 140), spacing: 20)
     ]
-    
+    @EnvironmentObject var router: reAppRouter
     @StateObject var viewModel: BoxViewModel = BoxViewModel()
     @State private var isCreatingNewBox: Bool = false
     
@@ -20,9 +20,8 @@ struct BoxesView: View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(viewModel.boxes) { box in
-                    NavigationLink {
-                        BoxView(box: box)
-                            .environmentObject(viewModel)
+                    Button {
+                        router.navigate(to: .Box(TermViewModel(box: box)))
                     } label: {
                         BoxCardView(boxName: box.name ?? "Unkown",
                                     numberOfTerms: box.numberOfTerms,
@@ -83,6 +82,7 @@ struct BoxesView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             BoxesView(viewModel: BoxesView_Previews.viewModel)
+                .environmentObject(reAppRouter(navigationPath: .init()))
         }
     }
 }

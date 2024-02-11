@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SwipperReportView: View {
     @State var swipeReview: SwipeReview
-
+    @EnvironmentObject var router: reAppRouter
+    
     var body: some View {
         VStack(spacing: 0){
             Text("\(swipeReview.termsReviewed.count)/\(swipeReview.termsToReview.count) terms were reviewed")
@@ -32,7 +33,7 @@ struct SwipperReportView: View {
             
             
             Button{
-                print("")
+                router.navigateBackward(step: 2)
             } label: {
                 Text("Close Report")
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -50,7 +51,7 @@ struct SwipperReportView: View {
 }
 
 struct SwipperReportView_Previews: PreviewProvider {
-    static var router: reAppRouter{.init(navigationPath: .init())}
+    @StateObject static var router = reAppRouter(navigationPath: .init())
 
     static var reviewdTerms = {
         var reviewdTerms: [Term] = []
@@ -89,5 +90,6 @@ struct SwipperReportView_Previews: PreviewProvider {
             SwipperReportView(swipeReview: swipeReview)
                 
         }
+        .environmentObject(SwipperReportView_Previews.router)
     }
 }

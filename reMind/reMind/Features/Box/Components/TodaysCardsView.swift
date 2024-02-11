@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TodaysCardsView: View {
+    @EnvironmentObject var router: reAppRouter
     @State var numberOfPendingCards: Int
     @State var theme: reTheme
     @State private var isSwipping: Bool = false
@@ -21,27 +22,24 @@ struct TodaysCardsView: View {
                 .font(.title3)
             
             Button(action: {
-                isSwipping = true
+                router.navigate(to: .Swipper(SwipeReview(termsToReview: [])))
             }, label: {
                 Text("Start Swipping")
                     .frame(maxWidth: .infinity)
             })
             .buttonStyle(reColorButtonStyle(.mauve))
             .padding(.top, 10)
-            .navigationDestination(isPresented: $isSwipping){
-                SwipperView(review: SwipeReview(termsToReview: [
-                    Term.newObject()
-                ]))
-                .navigationBarBackButtonHidden(true)
-            }
         }
         .padding(.vertical, 16)
     }
 }
 
 struct TodaysCardsView_Previews: PreviewProvider {
+    @ObservedObject static var router = reAppRouter(navigationPath: .init())
+    
     static var previews: some View {
         TodaysCardsView(numberOfPendingCards: 10, theme: .mauve)
+            .environmentObject(router)
             .padding()
     }
 }

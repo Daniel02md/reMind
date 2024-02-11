@@ -9,7 +9,7 @@ import Foundation
 
 
 class TermViewModel: ObservableObject{
-    private let box: Box
+    let box: Box
     @Published var terms: [Term]
     
     init(box: Box){
@@ -42,3 +42,14 @@ class TermViewModel: ObservableObject{
 }
 
 
+extension TermViewModel: Hashable{
+    static func == (lhs: TermViewModel, rhs: TermViewModel) -> Bool {
+        return lhs.terms == rhs.terms && lhs.box == rhs.box
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.terms)
+        hasher.combine(self.box)
+    }
+    
+}

@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct BoxView: View {
-    var box: Box
-
-    @ObservedObject var viewModel: TermViewModel
+    @EnvironmentObject var viewModel: TermViewModel
     @State private var searchText: String = ""
     @State private var isCreatingTerm: Bool = false
     @State private var isEditingTerm: Bool = false
@@ -24,61 +22,57 @@ struct BoxView: View {
         }
     }
     
-    init (box: Box){
-        self.box = box
-        viewModel = TermViewModel(box: box)
-    }
     var body: some View {
-        NavigationStack{
-            List {
-                TodaysCardsView(numberOfPendingCards: 0,
-                                theme: .mauve)
-                Section {
-                    ForEach(filteredTerms) { term in
-                        TermRowView(viewModel: viewModel, term: term)
-                    }
-                } header: {
-                    Text("All Cards")
-                        .textCase(.none)
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(Palette.label.render)
-                        .padding(.leading, -16)
-                        .padding(.bottom, 16)
+        List {
+            TodaysCardsView(numberOfPendingCards: 0,
+                            theme: .mauve)
+            Section {
+                ForEach(filteredTerms) { term in
+                    TermRowView(viewModel: viewModel, term: term)
+                }
+            } header: {
+                Text("All Cards")
+                    .textCase(.none)
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(Palette.label.render)
+                    .padding(.leading, -16)
+                    .padding(.bottom, 16)
+            }
+            
+        }
+        .scrollContentBackground(.hidden)
+        .background(reBackground())
+        .navigationTitle(viewModel.box.name ?? "Unknown")
+        .searchable(text: $searchText, prompt: "")
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    isEditingTerm.toggle()
+                } label: {
+                    Image(systemName: "square.and.pencil")
+                }
+                
+                Button {
+                    isCreatingTerm.toggle()
+                } label: {
+                    Image(systemName: "plus")
                 }
                 
             }
-            .scrollContentBackground(.hidden)
-            .background(reBackground())
-            .navigationTitle(box.name ?? "Unknown")
-            .searchable(text: $searchText, prompt: "")
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        isEditingTerm.toggle()
-                    } label: {
-                        Image(systemName: "square.and.pencil")
-                    }
-                    
-                    Button {
-                        isCreatingTerm.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                    
-                }
-            }
-            .sheet(isPresented: $isEditingTerm){
-                BoxEditorView(box: box)
-            }
-            .sheet(isPresented: $isCreatingTerm){
-                TermEditorView(viewModel: viewModel)
-            }
+        }
+        .sheet(isPresented: $isEditingTerm){
+            BoxEditorView(box: viewModel.box)
+        }
+        .sheet(isPresented: $isCreatingTerm){
+            TermEditorView(viewModel: viewModel)
         }
     }
 }
 
 struct BoxView_Previews: PreviewProvider {
+    @ObservedObject static var router = reAppRouter(navigationPath: .init())
+    
     static let box: Box = {
         let box = Box(context: CoreDataStack.inMemory.managedContext)
         box.name = "Box 1"
@@ -107,8 +101,10 @@ struct BoxView_Previews: PreviewProvider {
     
 
     static var previews: some View {
-        NavigationStack {
-            BoxView(box: BoxView_Previews.box)
+        NavigationStack(path: $router.navigationPath){
+            BoxView()
+                .environmentObject(TermViewModel(box: BoxView_Previews.box))
         }
+        .environmentObject(router)
     }
 }
