@@ -31,6 +31,13 @@ class BoxViewModel: ObservableObject, Hashable{
         box.rawTheme = Int16(theme ?? Int(box.rawTheme))
     }
     
+    func deleteBox(_ box: Box){
+        box.destroy()
+        if let index = boxes.firstIndex(of: box){
+            boxes.remove(at: index)
+        }
+    }
+    
     func getNumberOfPendingTerms(of box: Box) -> String {
         let term = box.terms as? Set<Term> ?? []
         let today = Date()

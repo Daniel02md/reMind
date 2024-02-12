@@ -25,7 +25,9 @@ struct BoxesView: View {
                     } label: {
                         BoxCardView(boxName: box.name ?? "Unkown",
                                     numberOfTerms: box.numberOfTerms,
-                                    theme: box.theme)
+                                    theme: box.theme){
+                            viewModel.deleteBox(box)
+                        }
                         .reBadge(viewModel.getNumberOfPendingTerms(of: box))
                     }
                 }
