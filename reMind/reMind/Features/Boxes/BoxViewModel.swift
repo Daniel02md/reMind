@@ -18,16 +18,20 @@ class BoxViewModel: ObservableObject, Hashable{
         }
     }
 
-    func newBox(name: String, keyword: String, description: String, theme: Int){
+    func newBox(name: String, keywords: String, description: String, theme: Int){
         let box: Box = Box.newObject()
         box.objectWillChange.assign(to: &$boxWillChange)
         box.name = name
+        box.keywords = keywords
+        box.boxDescription = description
         box.rawTheme = Int16(theme)
         self.boxes.append(box)
     }
     
-    func updateBox(box: Box, name: String? = nil, keyword: String? = nil, description: String? = nil, theme: Int? = nil){
+    func updateBox(box: Box, name: String? = nil, keywords: String? = nil, description: String? = nil, theme: Int? = nil){
         box.name = name ?? box.name
+        box.keywords = keywords ?? box.keywords
+        box.boxDescription = description ?? box.boxDescription
         box.rawTheme = Int16(theme ?? Int(box.rawTheme))
     }
     

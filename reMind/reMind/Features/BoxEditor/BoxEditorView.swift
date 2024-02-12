@@ -46,11 +46,11 @@ struct BoxEditorView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
                         if let fulfilledBox = box {
-                            viewModel.updateBox(box: fulfilledBox, name: name, theme: theme)
+                            viewModel.updateBox(box: fulfilledBox, name: name, keywords: keywords, description: description, theme: theme)
                             
                             
                         } else{
-                            viewModel.newBox(name: name, keyword: keywords, description: description, theme: theme)
+                            viewModel.newBox(name: name, keywords: keywords, description: description, theme: theme)
                         }
                         dismiss()
                     }
@@ -60,6 +60,8 @@ struct BoxEditorView: View {
             .onAppear{
                 if let editedBox = box{
                     self.name = editedBox.name ?? ""
+                    self.keywords = editedBox.keywords ?? ""
+                    self.description = editedBox.boxDescription ?? ""
                     self.theme = Int(editedBox.rawTheme)
                 }
             }
