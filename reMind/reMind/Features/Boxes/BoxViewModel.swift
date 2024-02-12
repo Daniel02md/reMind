@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BoxViewModel: ObservableObject {
+class BoxViewModel: ObservableObject, Hashable{
     @Published var boxes: [Box] = []
     @Published private var boxWillChange: Void = ()
 
@@ -44,5 +44,15 @@ class BoxViewModel: ObservableObject {
         }
 
         return filteredTerms.count == 0 ? "" : "\(filteredTerms.count)"
+    }
+}
+
+extension BoxViewModel{
+    static func == (lhs: BoxViewModel, rhs: BoxViewModel) -> Bool {
+        return lhs.boxes == rhs.boxes
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.boxes)
     }
 }
