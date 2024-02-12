@@ -55,7 +55,7 @@ extension Term{
     }
 }
 
-enum SpacedRepetitionSystem: Int {
+enum SpacedRepetitionSystem: Int, CaseIterable{
     case none = 0
     case first = 1
     case second = 2
@@ -64,4 +64,22 @@ enum SpacedRepetitionSystem: Int {
     case fifth = 8
     case sixth = 13
     case seventh = 21
+    
+    func next() -> Self{
+        let all = Self.allCases
+        let idx = all.firstIndex(of: self)!
+        let next = all.index(after: idx)
+        return next == all.endIndex ? self : all[next]
+    }
+    
+    func before() -> Self{
+        if self == .none{
+            return .first
+        }
+        
+        let all = Self.allCases
+        let idx = all.firstIndex(of: self)!
+        let before = all.index(before: idx)
+        return before == all.startIndex ? self : all[before]
+    }
 }

@@ -11,5 +11,5 @@ enum reAppDestination: Hashable{
     case Boxes
     case Box(TermViewModel)
     case Swipper(SwipeReview)
-    case SwipperReport(SwipeReview)
+    case SwipperReport(report: [TermReport], termsToReview: Int)
 }

@@ -28,8 +28,8 @@ struct reMindApp: App {
                                 SwipperView(review: swipeReview)
                                 .navigationBarBackButtonHidden(true)
                             
-                            case .SwipperReport(let swipeReview):
-                                SwipperReportView(swipeReview: swipeReview)
+                            case .SwipperReport(report: let report, termsToReview: let terms):
+                                SwipperReportView(report: report, termsToReview: terms)
                                 .navigationBarBackButtonHidden(true)
                         }
                     }

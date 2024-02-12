@@ -41,7 +41,6 @@ struct CardTermView: View {
             .foregroundColor(Palette.reBlack.render)
         }
         .listRowInsets(.init(top: 0, leading: -20, bottom: 0, trailing: 0))
-        .frame(width: .infinity)
         .padding(.horizontal, 20)
         .background(isReviewd ? Palette.success.render : Palette.error.render)
         

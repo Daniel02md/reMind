@@ -12,6 +12,20 @@ class TermViewModel: ObservableObject{
     let box: Box
     @Published var terms: [Term]
     
+    var termsToReview: [Term]{
+        let today = Date()
+        let filteredTerms = terms.filter { term in
+            let srs = Int(term.rawSRS)
+            guard let lastReview = term.lastReview,
+                  let nextReview = Calendar.current.date(byAdding: .day, value: srs, to: lastReview)
+            else { return false }
+
+            return nextReview <= today
+        }
+        return Array(filteredTerms)
+    }
+    
+    
     init(box: Box){
         self.box = box
         let setTerms = box.terms as? Set<Term> ?? []

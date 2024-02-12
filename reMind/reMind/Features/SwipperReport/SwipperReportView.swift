@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct SwipperReportView: View {
-    @State var swipeReview: SwipeReview
+    @State var report: [TermReport]
+    @State var termsToReview: Int
     @EnvironmentObject var router: reAppRouter
     
     var body: some View {
         VStack(spacing: 0){
-            Text("\(swipeReview.termsReviewed.count)/\(swipeReview.termsToReview.count) terms were reviewed")
+            Text("\(report.count)/\(termsToReview) terms were reviewed")
                 .fontWeight(.bold)
                 .padding(.top)
             
             List{
                 Section{
-                    ForEach(swipeReview.termsReviewed) { term in
-                        CardTermView(term: term.value!, meaning: term.meaning!, isReviewd: false)
+                    ForEach(report) { term in
+                        CardTermView(term: term.value ?? "Unknown",
+                                     meaning: term.meaning ?? "",
+                                     isReviewd: term.status)
                     }
                 }
                 .tint(Palette.reBlack.render)
@@ -53,41 +56,22 @@ struct SwipperReportView: View {
 struct SwipperReportView_Previews: PreviewProvider {
     @StateObject static var router = reAppRouter(navigationPath: .init())
 
-    static var reviewdTerms = {
-        var reviewdTerms: [Term] = []
-        let term1 = Term(context: CoreDataStack.inMemory.managedContext)
-        term1.value = "Front Value"
-        term1.meaning = "Meaning"
-        
-        let term2 = Term(context: CoreDataStack.inMemory.managedContext)
-        term2.value = "Front Value 2"
-        term2.meaning = "Description 2"
-        
-        reviewdTerms.append(contentsOf: [term1, term2])
-        return termsToReview
+    static var report = {
+        var report: [TermReport] = []
+
+        report.append(.init(value: "Term1", meaning: "Meaning 1", status: false))
+        report.append(.init(value: "Term2", meaning: "Meaning 2", status: false))
+        report.append(.init(value: "Term3", meaning: "Meaning 3", status: false))
+        report.append(.init(value: "Term4", meaning: "Meaning 4", status: true))
+        return report
     } ()
     
-    static var termsToReview = {
-        var termsToReview: [Term] = []
-        let term1 = Term(context: CoreDataStack.inMemory.managedContext)
-        term1.value = "Wrong"
-        term1.meaning = "Meaning goes here..."
-        
-        
-        let term2 = Term(context: CoreDataStack.inMemory.managedContext)
-        term2.value = "Wrong2"
-        term2.meaning = "Meaning goes here 2"
-        
-        termsToReview.append(contentsOf: [term1, term2])
-        return termsToReview
-    } ()
-    
-    static var swipeReview = SwipeReview(termsToReview: termsToReview, termsReviewed: reviewdTerms)
+    static var swipeReview = SwipeReview(termsToReview: [], report: report)
     
     
     static var previews: some View {
         NavigationStack{
-            SwipperReportView(swipeReview: swipeReview)
+            SwipperReportView(report: swipeReview.report, termsToReview: 4)
                 
         }
         .environmentObject(SwipperReportView_Previews.router)

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TodaysCardsView: View {
     @EnvironmentObject var router: reAppRouter
+    @EnvironmentObject var viewModel: TermViewModel
     @State var numberOfPendingCards: Int
     @State var theme: reTheme
     @State private var isSwipping: Bool = false
@@ -22,7 +23,7 @@ struct TodaysCardsView: View {
                 .font(.title3)
             
             Button(action: {
-                router.navigate(to: .Swipper(SwipeReview(termsToReview: [])))
+                router.navigate(to: .Swipper(SwipeReview(termsToReview: viewModel.termsToReview)))
             }, label: {
                 Text("Start Swipping")
                     .frame(maxWidth: .infinity)
