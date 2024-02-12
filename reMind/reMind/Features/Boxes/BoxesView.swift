@@ -21,7 +21,7 @@ struct BoxesView: View {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(viewModel.boxes) { box in
                     Button {
-                        router.navigate(to: .Box(TermViewModel(box: box)))
+                        router.navigate(to: .Box(TermViewModel(box: box), viewModel))
                     } label: {
                         BoxCardView(boxName: box.name ?? "Unkown",
                                     numberOfTerms: box.numberOfTerms,

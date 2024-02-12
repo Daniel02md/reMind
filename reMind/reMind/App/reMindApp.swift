@@ -20,9 +20,10 @@ struct reMindApp: App {
                         switch destination{
                             case .Boxes:
                                 BoxesView()
-                            case .Box(let vm):
+                            case .Box(let termViewModel, let boxViewModel):
                                 BoxView()
-                                .environmentObject(vm)
+                                .environmentObject(termViewModel)
+                                .environmentObject(boxViewModel)
                             
                             case .Swipper(let swipeReview):
                                 SwipperView(review: swipeReview)

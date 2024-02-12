@@ -9,7 +9,7 @@ import Foundation
 
 enum reAppDestination: Hashable{
     case Boxes
-    case Box(TermViewModel)
+    case Box(TermViewModel, BoxViewModel)
     case Swipper(SwipeReview)
     case SwipperReport(report: [TermReport], termsToReview: Int)
 }
