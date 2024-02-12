@@ -11,6 +11,7 @@ import Foundation
 class TermViewModel: ObservableObject{
     let box: Box
     @Published var terms: [Term]
+    @Published private var termWillChange: Void = ()
     
     var termsToReview: [Term]{
         let today = Date()
@@ -30,12 +31,16 @@ class TermViewModel: ObservableObject{
         self.box = box
         let setTerms = box.terms as? Set<Term> ?? []
         terms = Array(setTerms)
+        terms.forEach{
+            $0.objectWillChange.assign(to: &$termWillChange)
+        }
     }
     
     func newTerm(value: String, meaning: String){
         let term: Term = Term.newObject()
         term.value = value
         term.meaning = meaning
+        term.objectWillChange.assign(to: &$termWillChange)
         terms.append(term)
         box.addToTerms(term)
     }
