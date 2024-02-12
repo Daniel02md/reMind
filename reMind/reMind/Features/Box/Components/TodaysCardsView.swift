@@ -10,8 +10,8 @@ import SwiftUI
 struct TodaysCardsView: View {
     @EnvironmentObject var router: reAppRouter
     @EnvironmentObject var viewModel: TermViewModel
-    @State var numberOfPendingCards: Int
-    @State var theme: reTheme
+    var numberOfPendingCards: Int
+    var theme: reTheme
     @State private var isSwipping: Bool = false
     
     var body: some View {
@@ -28,7 +28,7 @@ struct TodaysCardsView: View {
                 Text("Start Swipping")
                     .frame(maxWidth: .infinity)
             })
-            .buttonStyle(reColorButtonStyle(.mauve))
+            .buttonStyle(reColorButtonStyle(theme))
             .padding(.top, 10)
         }
         .padding(.vertical, 16)
@@ -37,10 +37,11 @@ struct TodaysCardsView: View {
 
 struct TodaysCardsView_Previews: PreviewProvider {
     @ObservedObject static var router = reAppRouter(navigationPath: .init())
-    
+    @ObservedObject static var viewModel = TermViewModel(box:.newObject())
     static var previews: some View {
         TodaysCardsView(numberOfPendingCards: 10, theme: .mauve)
             .environmentObject(router)
+            .environmentObject(viewModel)
             .padding()
     }
 }

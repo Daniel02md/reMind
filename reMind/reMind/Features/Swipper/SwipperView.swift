@@ -21,9 +21,9 @@ struct SwipperView: View {
 
             SwipperCard(direction: $direction,
                 frontContent: {
-                    Text(review.termsToReview.first?.value ?? "Fim")
+                    Text(review.termsToReview.first?.value ?? "")
                 }, backContent: {
-                    Text(review.termsToReview.first?.meaning ?? "Fim")
+                    Text(review.termsToReview.first?.meaning ?? "")
                 })
 
             Spacer()

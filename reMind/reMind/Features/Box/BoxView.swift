@@ -24,8 +24,8 @@ struct BoxView: View {
     
     var body: some View {
         List {
-            TodaysCardsView(numberOfPendingCards: 0,
-                            theme: .mauve)
+            TodaysCardsView(numberOfPendingCards: viewModel.termsToReview.count,
+                            theme: viewModel.box.theme)
             Section {
                 ForEach(filteredTerms) { term in
                     TermRowView(viewModel: viewModel, term: term)
