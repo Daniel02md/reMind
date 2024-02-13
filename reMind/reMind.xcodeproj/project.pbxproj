@@ -13,6 +13,7 @@
 		B858A7B32B78744200925455 /* CardTermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858A7B22B78744200925455 /* CardTermView.swift */; };
 		B85AE1312B77C532007AFB3B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85AE1302B77C532007AFB3B /* Router.swift */; };
 		B85AE1342B77C59B007AFB3B /* reAppDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85AE1332B77C59B007AFB3B /* reAppDestination.swift */; };
+		B871A4A92B7B0BC50038874B /* reLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B871A4A82B7B0BC50038874B /* reLaunchScreen.storyboard */; };
 		B87824202B6731720055BD8A /* reRadialButtomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B878241F2B6731720055BD8A /* reRadialButtomView.swift */; };
 		B87824212B6731720055BD8A /* reThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B878241E2B6731720055BD8A /* reThemePickerView.swift */; };
 		B8AE46702B79828400FD7BBC /* TermReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE466F2B79828400FD7BBC /* TermReport.swift */; };
@@ -56,6 +57,7 @@
 		B858A7B22B78744200925455 /* CardTermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTermView.swift; sourceTree = "<group>"; };
 		B85AE1302B77C532007AFB3B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		B85AE1332B77C59B007AFB3B /* reAppDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reAppDestination.swift; sourceTree = "<group>"; };
+		B871A4A82B7B0BC50038874B /* reLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = reLaunchScreen.storyboard; sourceTree = "<group>"; };
 		B878241E2B6731720055BD8A /* reThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reThemePickerView.swift; sourceTree = "<group>"; };
 		B878241F2B6731720055BD8A /* reRadialButtomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reRadialButtomView.swift; sourceTree = "<group>"; };
 		B8AE466F2B79828400FD7BBC /* TermReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermReport.swift; sourceTree = "<group>"; };
@@ -136,6 +138,14 @@
 				B85AE1332B77C59B007AFB3B /* reAppDestination.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		B876539C2B7AFD4C00426899 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B871A4A82B7B0BC50038874B /* reLaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		FE3ABECB2A4F5E7F00432ED4 /* Components */ = {
@@ -222,6 +232,7 @@
 		FE6A9F982A461E2400A84FC9 /* reMind */ = {
 			isa = PBXGroup;
 			children = (
+				B876539C2B7AFD4C00426899 /* LaunchScreen */,
 				FE6A9FA72A461F1400A84FC9 /* App */,
 				FE3ABEE02A53543300432ED4 /* Models */,
 				FE6A9FA82A461F1E00A84FC9 /* Utils */,
@@ -434,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE6A9FA12A461E2500A84FC9 /* Preview Assets.xcassets in Resources */,
+				B871A4A92B7B0BC50038874B /* reLaunchScreen.storyboard in Resources */,
 				FE6A9F9E2A461E2500A84FC9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,9 +625,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"reMind/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = reMind/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = reLaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
@@ -642,9 +656,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"reMind/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = reMind/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = reLaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
