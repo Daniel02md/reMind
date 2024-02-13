@@ -10,7 +10,7 @@ import SwiftUI
 struct reTextField: View {
     @State var title: String = ""
     @State var caption: String = ""
-
+    @State var maxSize: Int = 50
     @Binding var text: String
 
     var body: some View {
@@ -23,6 +23,11 @@ struct reTextField: View {
 
             TextField("", text: $text)
                 .textFieldStyle(reTextFieldStyle())
+                .onChange(of: text) { newValue in
+                    if text.count > maxSize {
+                        self.text = String(text.prefix(maxSize))
+                    }
+                }
 
             if !caption.isEmpty {
                 Text(caption)
