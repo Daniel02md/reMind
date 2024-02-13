@@ -22,8 +22,10 @@ struct SwipperView: View {
             SwipperCard(direction: $direction,
                 frontContent: {
                     Text(review.termsToReview.first?.value ?? "")
+                        .foregroundColor(Palette.reBlack.render)
                 }, backContent: {
                     Text(review.termsToReview.first?.meaning ?? "")
+                        .foregroundColor(Palette.reBlack.render)
                 })
 
             Spacer()
