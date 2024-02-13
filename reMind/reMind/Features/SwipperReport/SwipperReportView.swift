@@ -19,6 +19,9 @@ struct SwipperReportView: View {
                 .padding(.top)
             
             List{
+                if report.isEmpty{
+                    Text("Nothing was reviewed")
+                }
                 Section{
                     ForEach(report) { term in
                         CardTermView(term: term.value ?? "Unknown",
