@@ -37,6 +37,8 @@ struct BoxCardView: View {
         .frame(width: 165, alignment: .leading)
         .background(theme.render)
         .cornerRadius(10)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 10))
         .contextMenu{
             Button(role: ButtonRole.destructive){
                 showAlert.toggle()
